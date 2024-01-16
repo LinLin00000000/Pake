@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "WeRead",
+    "productName": "Tarkov-Map",
     "version": "1.0.0"
   },
   "tauri": {
@@ -8,7 +8,7 @@
       "csp": null,
       "dangerousRemoteDomainIpcAccess": [
         {
-          "domain": "weread.qq.com",
+          "domain": "tarkov-market.com",
           "windows": ["pake"],
           "enableTauriAPI": true
         }
@@ -26,6 +26,11 @@
       "fs": {
         "all": true,
         "scope": ["$DOWNLOAD/*"]
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": ["https://**"]
       }
     }
   },
