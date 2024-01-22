@@ -107,7 +107,7 @@ async fn main() {
                                             println!("删除文件 {:?} 时出错: {}", path_clone, e)
                                         }
                                     }
-                                });
+                                }).await.unwrap();
                             }
                         }
                         Ok(_) => {
