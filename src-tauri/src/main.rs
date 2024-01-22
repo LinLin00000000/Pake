@@ -71,6 +71,7 @@ async fn main() {
         .watch(&watch_folder, RecursiveMode::Recursive)
         .unwrap();
 
+    let rt_delete = tokio::runtime::Runtime::new().unwrap();
     tauri_app
         .plugin(windowStatePlugin::default().build())
         .invoke_handler(tauri::generate_handler![
@@ -99,7 +100,8 @@ async fn main() {
 
                                 let path_clone = paths[0].clone();
                                 println!("准备删除文件: {:?}", path_clone);
-                                tokio::spawn(async move {
+                                rt_delete.spawn(async move {
+                                    println!("等待 3 秒后删除文件: {:?}", path_clone);
                                     sleep(Duration::from_secs(3)).await;
                                     match fs::remove_file(&path_clone).await {
                                         Ok(_) => println!("文件 {:?} 已删除", path_clone),
